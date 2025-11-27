@@ -70,16 +70,20 @@ public class BugTracker {
         }
     }
 
-    public void changeStateOfBug(int index, State destinationState) {
+    public void changeStateOfBug(int id, State destinationState) {
+        Bug bug = bugList.stream()
+                .filter(b -> b.getId() == id)
+                .findFirst()
+                .orElseThrow(IndexOutOfBoundsException::new);
         switch (destinationState) {
             case IN_PROGRESS:
-                bugList.get(index).startProgress();
+                bug.startProgress();
                 break;
             case FIXED:
-                bugList.get(index).markedFixed();
+                bug.markedFixed();
                 break;
             case CLOSED:
-                bugList.get(index).closeBug();
+                bug.closeBug();
                 break;
             default:
                 throw new IllegalArgumentException("Invalid operation");

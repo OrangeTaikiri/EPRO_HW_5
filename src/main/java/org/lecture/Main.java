@@ -90,12 +90,12 @@ public class Main {
         System.out.println("\n=== ALL BUGS ===");
         tracker.printAllBugs();
 
-        System.out.print("Enter bug index to start progress: ");
-        int index = scanner.nextInt();
+        System.out.print("Enter bug id to start progress: ");
+        int id = scanner.nextInt();
         scanner.nextLine(); // Clear buffer
 
         try {
-            tracker.changeStateOfBug(index, State.IN_PROGRESS);
+            tracker.changeStateOfBug(id, State.IN_PROGRESS);
             System.out.println("Bug progress started!");
         } catch (IllegalStateException e) {
             System.out.println("Error: " + e.getMessage());
@@ -106,12 +106,12 @@ public class Main {
         System.out.println("\n=== ALL BUGS ===");
         tracker.printAllBugs();
 
-        System.out.print("Enter bug index to mark as fixed: ");
-        int index = scanner.nextInt();
+        System.out.print("Enter bug id to mark as fixed: ");
+        int id = scanner.nextInt();
         scanner.nextLine(); // Clear buffer
 
         try {
-            tracker.changeStateOfBug(index, State.FIXED);
+            tracker.changeStateOfBug(id, State.FIXED);
             System.out.println("Bug marked as fixed!");
         } catch (IllegalStateException e) {
             System.out.println("Error: " + e.getMessage());
@@ -122,12 +122,12 @@ public class Main {
         System.out.println("\n=== ALL BUGS ===");
         tracker.printAllBugs();
 
-        System.out.print("Enter bug index to close: ");
-        int index = scanner.nextInt();
+        System.out.print("Enter bug id to close: ");
+        int id = scanner.nextInt();
         scanner.nextLine(); // Clear buffer
 
         try {
-            tracker.changeStateOfBug(index, State.CLOSED);
+            tracker.changeStateOfBug(id, State.CLOSED);
             System.out.println("Bug closed!");
         } catch (IllegalStateException e) {
             System.out.println("Error: " + e.getMessage());
@@ -143,7 +143,7 @@ public class Main {
         System.out.println("\n=== ALL BUGS ===");
         tracker.printAllBugs();
 
-        System.out.print("Enter bug index to delete: ");
+        System.out.print("Enter bug id to delete: ");
         int index = scanner.nextInt();
         scanner.nextLine(); // Clear buffer
 
