@@ -23,18 +23,18 @@ public class BugTracker {
         if (bug.getPriority() == Priority.CRITICAL && criticalBugCount < 10) {
             topTenBugArray[criticalBugCount] = bug;
             criticalBugCount++;
-        }  else if (bug.getPriority() == Priority.CRITICAL && criticalBugCount == 10) {
+        } else if (bug.getPriority() == Priority.CRITICAL && criticalBugCount == 10) {
             System.out.println("Warning 10 critical bugs already exist");
         }
 
     }
 
-    public void removeBug(int index) {
-        if (index < 0 || index >= bugList.size()) {
-            throw new IndexOutOfBoundsException("Invalid index: " + index);
-        }
-
-        Bug bug = bugList.remove(index);
+    public void removeBug(int id) {
+        Bug bug = bugList.stream()
+                .filter(b -> b.getId() == id)
+                .findFirst()
+                .orElseThrow(IndexOutOfBoundsException::new);
+        bugList.remove(bug);
         knownIds.remove(bug.getId());
 
         if (bug.getPriority() == Priority.CRITICAL) {
@@ -56,7 +56,7 @@ public class BugTracker {
     public void printAllBugs() {
         bugList.sort(Comparator.comparing(Bug::getPriority));
         printHeader();
-        for(Bug bug : bugList) {
+        for (Bug bug : bugList) {
             bug.printDetails();
         }
     }
