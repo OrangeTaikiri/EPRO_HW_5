@@ -1,14 +1,16 @@
 package org.lecture;
 
 public class Bug {
-    String title;
-    State state;
-    Priority priority;
+    private int id;
+    private String title;
+    private State state;
+    private Priority priority;
 
-    public Bug(String title, Priority priority) {
+    public Bug(String title, Priority priority, int id) {
         this.title = title;
         this.state = State.OPEN;
         this.priority = priority;
+        this.id = id;
     }
 
     public void startProgress() {
@@ -36,7 +38,19 @@ public class Bug {
     }
 
     public void printDetails() {
-        System.out.printf("Title: %s .... State: %s .... Priority: %s %n", this.title, this.state, this.priority);
+        System.out.printf("%-4d | %-25s | %-12s | %-9s%n", this.id, this.title, this.state, this.priority);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public Priority getPriority() {
+        return priority;
     }
 
 }
